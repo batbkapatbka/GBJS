@@ -25,7 +25,7 @@ function transformation(num) {
 	}
 	return obj;
 }
-console.log(transformation(584));
+console.log(transformation(Math.round(Math.random() * 999)));
 
 /*
 Продолжить работу с интернет-магазином:
@@ -34,3 +34,35 @@ console.log(transformation(584));
 Перенести функционал подсчета корзины на объектно-ориентированную базу.
 На дополнительный плюс - реализовать класс корзины. Свойство - сама корзина (массив). Методы - подсчет стоимости, добавление товара в корзину.
 */
+
+const cart = [{
+	наименование: 'nokia',
+	количество: 5,
+	цена: 10,
+}, {
+	наименование: 'samsung',
+	количество: 1,
+	цена: 1000,
+}, {
+	наименование: 'apple',
+	количество: 1,
+	цена: 2000,
+}];
+
+cart.push({
+	наименование: 'motorola',
+	количество: 3,
+	цена: 500,
+});
+
+function countBasketPrice(cart) {
+	return cart.reduce((accum, item) => accum + item.цена * item.количество, 0);
+}
+
+console.log(`В тележке:\n`);
+for (let i = 0; i < cart.length; i++) {
+	console.log(`   ${cart[i].количество} ${cart[i].наименование} по ${cart[i].цена} Руб.`);
+}
+console.log(`\nИтого: ${countBasketPrice(cart)} Руб.`);
+
+// C классами что-то ничего не смог придумать в данной ситуации. Как тут они могли бы помочь не пойму.
