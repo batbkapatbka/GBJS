@@ -66,3 +66,36 @@ for (let i = 0; i < cart.length; i++) {
 console.log(`\nИтого: ${countBasketPrice(cart)} Руб.`);
 
 // C классами что-то ничего не смог придумать в данной ситуации. Как тут они могли бы помочь не пойму.
+
+class Basket {
+	cart = []
+
+	constructor(...items) {
+		this.cart.push(...items)
+	}
+
+	addItem(item) {
+		this.cart.push(item)
+	}
+
+	calcTotalPrice() {
+		return this.cart.reduce((acc, item) => {
+			return acc + item.price
+		}, 0)
+	}
+}
+
+class Item {
+	name = ''
+	price = 0
+
+	constructor(name, price) {
+		this.name = name
+		this.price = price
+	}
+}
+
+const myCart = new Basket(new Item('Computer', 1000), new Item('TV', 300))
+myCart.addItem(new Item('Apple', 5))
+let totalPrice = myCart.calcTotalPrice()
+console.log(totalPrice)
