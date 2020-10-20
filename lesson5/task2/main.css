@@ -1,0 +1,90 @@
+html {
+	box-sizing: border-box;
+	font-size: 24px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	display: inline-block;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.basket__title {
+	text-align: center;
+	font-size: 50px;
+	margin: 20px 0;
+}
+
+.basket__list {
+	display: flex;
+	font-weight: 700;
+}
+
+.basket__item-qty,
+.basket__qty {
+	width: 10%;
+}
+
+.basket__item-name,
+.basket__name {
+	width: 70%;
+}
+
+.basket__item-price,
+.basket__price {
+	width: 20%;
+}
+
+.basket__line {
+	border-bottom: 1px solid #000;
+}
+
+.basket__main {
+	display: flex;
+}
+
+.basket__inner {
+	margin-top: 10px;
+}
+
+.basket__totalprice {
+	padding-left: 73%;
+	float: left;
+	font-weight: 700;
+
+}
+
+.basket__sum {
+	display: inline-block;
+	font-weight: 700;
+	line-height: 28px;
+	padding-left: 10px;
+}
+
+.item {
+	font-size: 18px;
+}
