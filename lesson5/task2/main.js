@@ -66,7 +66,7 @@ function addBasketPrice(num) {
 	basketPrice.appendChild(newBasketPrice)
 }
 for (let i = 0; i < myCart.cart.length; i++) {
-	addBasketPrice(myCart.cart[i].qty)
+	addBasketPrice(myCart.cart[i].price)
 }
 
 function addBasketTotalPrice(num) {
