@@ -79,6 +79,10 @@
 	transform: rotate(180deg);
 }
 
+.chess {
+	margin-top: 20px;
+}
+
 .chess-hidden.chess {
 	display: none;
 }
