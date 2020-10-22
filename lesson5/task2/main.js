@@ -77,5 +77,3 @@ function addBasketTotalPrice(num) {
 	basketTotalPrice.appendChild(newBasketTotalPrice)
 }
 addBasketTotalPrice(totalPrice)
-
-// С оформлением не стал возиться. Нету времени

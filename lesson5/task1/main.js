@@ -1,40 +1,27 @@
-function createNewCellW() {
+function createNewCell(color) {
 	const board = document.querySelector('.board')
 	const newCell = document.createElement('div')
-	newCell.setAttribute('class', 'cell-white')
+	newCell.setAttribute('class', `cell-${color}`)
 	board.appendChild(newCell)
-}
-
-function createNewCellB() {
-	const board = document.querySelector('.board')
-	const newCell = document.createElement('div')
-	newCell.setAttribute('class', 'cell-black')
-	board.appendChild(newCell)
-}
-
-function createNewLineB() {
-	for (let i = 0; i < 8; i++) {
-		if (i % 2 === 0) {
-			createNewCellB()
-		} else createNewCellW()
-	}
 }
 
 function createNewLineW() {
 	for (let i = 0; i < 8; i++) {
-		if (i % 2 !== 0) {
-			createNewCellB()
-		} else createNewCellW()
+		createNewCell(i % 2 ? 'white' : 'black')
+	}
+}
+
+function createNewLineB() {
+	for (let i = 0; i < 8; i++) {
+		createNewCell(!(i % 2) ? 'white' : 'black')
 	}
 }
 
 function createBoard() {
 	const start = document.querySelector('.chess')
-	start.classList.remove('chess-hidden') //Если не подключать мэйн.джиэс чтобы на экране ничего не было
+	start.classList.remove('chess-hidden')
 	for (let i = 0; i < 8; i++) {
-		if (i % 2 === 0) {
-			createNewLineW()
-		} else createNewLineB()
+		i % 2 ? createNewLineW() : createNewLineB()
 	}
 }
 createBoard()
@@ -46,9 +33,6 @@ function createNumbersLeft(num) {
 	newNumberLeft.innerText = num
 	numbersLeft.appendChild(newNumberLeft)
 }
-for (let i = 8; i > 0; i--) {
-	createNumbersLeft(i)
-}
 
 function createNumbersRight(num) {
 	const numbersRight = document.querySelector('.numbers-right')
@@ -57,7 +41,9 @@ function createNumbersRight(num) {
 	newNumberRight.innerText = num
 	numbersRight.appendChild(newNumberRight)
 }
+
 for (let i = 8; i > 0; i--) {
+	createNumbersLeft(i)
 	createNumbersRight(i)
 }
 
@@ -70,9 +56,6 @@ function createWordsTop(num) {
 	newWordTop.innerText = num
 	wordsTop.appendChild(newWordTop)
 }
-for (let i = 0; i <= wordNames.length - 1; i++) {
-	createWordsTop(wordNames[i])
-}
 
 function createWordsBottom(num) {
 	const wordsBottom = document.querySelector('.words-bottom')
@@ -83,6 +66,5 @@ function createWordsBottom(num) {
 }
 for (let i = 0; i <= wordNames.length - 1; i++) {
 	createWordsBottom(wordNames[i])
+	createWordsTop(wordNames[i])
 }
-
-//Не стал делать таблицами тк учили про таблицы забыть
