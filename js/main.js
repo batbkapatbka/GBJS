@@ -53,17 +53,6 @@ class Basket {
 	}
 }
 
-const myCart = new Basket()
-myCart.addItem(new Product('Apple', 1, 40))
-myCart.addItem(new Product('Apple', 1, 40))
-
-for (let i = 0; i < myCart.cart.length; i++) {
-	myCart.renderBasket((myCart.cart[i].name), (myCart.cart[i].price), (myCart.cart[i].qty), (myCart.cart[i].price) * myCart.cart[i].qty)
-}
-
-let totalPrice = myCart.calcTotalPrice()
-myCart.renderTotalPrice(totalPrice)
-
 
 //@@@ LIST @@@@@@@@@@@@@@@@@@
 
@@ -79,45 +68,48 @@ class List {
 		this.products.push(item)
 	}
 
-	renderProduct(num) {
+	renderProduct(num, j) {
 		const product = document.querySelector('.main__products')
 		const newProduct = document.createElement('a')
-		newProduct.setAttribute('class', 'product-item__wrapper product-item__wrapper')
+		newProduct.setAttribute('class', `product-item__wrapper product-item__wrapper${j}`)
 		newProduct.setAttribute('href', '#')
 		product.appendChild(newProduct)
-		myList.renderProductImage(myList.products[num].img)
-		myList.renderProductTitle(myList.products[num].name)
-		myList.renderProductPrice(myList.products[num].price)
-		myList.renderProductBtn()
+		myList.renderProductImage((myList.products[num].img), j)
+		myList.renderProductTitle((myList.products[num].name), j)
+		myList.renderProductPrice((myList.products[num].price), j)
+		myList.renderProductBtn(j)
 	}
-	renderProductImage(img) {
-		const image = document.querySelector('.product-item__wrapper')
+	renderProductImage(img, j) {
+		const image = document.querySelector(`.product-item__wrapper${j}`)
 		const newImage = document.createElement('img')
 		newImage.setAttribute('class', 'product-item__img')
 		newImage.setAttribute('src', img)
 		newImage.setAttribute('alt', '')
 		image.appendChild(newImage)
 	}
-	renderProductTitle(text) {
-		const title = document.querySelector('.product-item__wrapper')
+	renderProductTitle(text, j) {
+		const title = document.querySelector(`.product-item__wrapper${j}`)
 		const newTitle = document.createElement('h4')
 		newTitle.setAttribute('class', 'product-item__title')
 		newTitle.innerHTML = text
 		title.appendChild(newTitle)
 	}
-	renderProductPrice(num) {
-		const price = document.querySelector('.product-item__wrapper')
+	renderProductPrice(num, j) {
+		const price = document.querySelector(`.product-item__wrapper${j}`)
 		const newPrice = document.createElement('p')
 		newPrice.setAttribute('class', 'product-item__price')
 		newPrice.innerHTML = `${num}$`
 		price.appendChild(newPrice)
 	}
-	renderProductBtn() {
-		const btn = document.querySelector('.product-item__wrapper')
+	renderProductBtn(j) {
+		const btn = document.querySelector(`.product-item__wrapper${j}`)
 		const newBtn = document.createElement('button')
 		newBtn.setAttribute('class', 'product-item__basket')
 		newBtn.innerHTML = 'Buy'
 		btn.appendChild(newBtn)
+		btn.addEventListener('click', function () {
+			//
+		})
 	}
 }
 
@@ -128,7 +120,18 @@ myList.addItem(new Product('Apricot kernel oil', 25, 1, 'images/product2.jpg'))
 myList.addItem(new Product('linseed oil', 15, 1, 'images/product3.jpg'))
 myList.addItem(new Product('Cedar oil', 50, 1, 'images/product4.jpg'))
 
-myList.renderProduct(0)
-myList.renderProduct(1)
+for (let i = 0; i < myList.products.length; i++) {
+	myList.renderProduct(i, i)
+}
 
-for (let i = 0; i < myList.products.length; i++) {}
+const myCart = new Basket()
+myCart.addItem(new Product('Apple', 1, 40))
+myCart.addItem(new Product(myList.products[0].name, myList.products[0].price, myList.products[0].qty))
+myCart.addItem(new Product(myList.products[1].name, myList.products[1].price, myList.products[1].qty))
+
+let totalPrice = myCart.calcTotalPrice()
+myCart.renderTotalPrice(totalPrice)
+
+for (let i = 0; i < myCart.cart.length; i++) {
+	myCart.renderBasket((myCart.cart[i].name), (myCart.cart[i].price), (myCart.cart[i].qty), (myCart.cart[i].price) * myCart.cart[i].qty)
+}
