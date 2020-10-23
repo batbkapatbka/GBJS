@@ -26,45 +26,29 @@ function createBoard() {
 }
 createBoard()
 
-function createNumbersLeft(num) {
-	const numbersLeft = document.querySelector('.numbers-left')
-	const newNumberLeft = document.createElement('div')
-	newNumberLeft.setAttribute('class', 'number')
-	newNumberLeft.innerText = num
-	numbersLeft.appendChild(newNumberLeft)
-}
-
-function createNumbersRight(num) {
-	const numbersRight = document.querySelector('.numbers-right')
-	const newNumberRight = document.createElement('div')
-	newNumberRight.setAttribute('class', 'number number-right')
-	newNumberRight.innerText = num
-	numbersRight.appendChild(newNumberRight)
+function createNumbers(num, side) {
+	const numbers = document.querySelector(`.numbers-${side}`)
+	const newNumber = document.createElement('div')
+	newNumber.setAttribute('class', `number number-${side}`)
+	newNumber.innerText = num
+	numbers.appendChild(newNumber)
 }
 
 for (let i = 8; i > 0; i--) {
-	createNumbersLeft(i)
-	createNumbersRight(i)
+	createNumbers(i, 'left')
+	createNumbers(i, 'right')
 }
 
 const wordNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
-function createWordsTop(num) {
-	const wordsTop = document.querySelector('.words-top')
-	const newWordTop = document.createElement('div')
-	newWordTop.setAttribute('class', 'word-top word')
-	newWordTop.innerText = num
-	wordsTop.appendChild(newWordTop)
-}
-
-function createWordsBottom(num) {
-	const wordsBottom = document.querySelector('.words-bottom')
-	const newWordBottom = document.createElement('div')
-	newWordBottom.setAttribute('class', 'word')
-	newWordBottom.innerText = num
-	wordsBottom.appendChild(newWordBottom)
+function createWords(num, side) {
+	const words = document.querySelector(`.words-${side}`)
+	const newWord = document.createElement('div')
+	newWord.setAttribute('class', `word word-${side}`)
+	newWord.innerText = num
+	words.appendChild(newWord)
 }
 for (let i = 0; i <= wordNames.length - 1; i++) {
-	createWordsBottom(wordNames[i])
-	createWordsTop(wordNames[i])
+	createWords(wordNames[i], 'bottom')
+	createWords(wordNames[i], 'top')
 }
