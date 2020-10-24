@@ -69,7 +69,7 @@ class Basket {
 		for (let i = 0; i < arr.length; i++) {
 			for (let j = i + 1; j < arr.length; j++) {
 				if (arr[i].name === arr[j].name) {
-					arr[i].qty += arr[j].qty
+					arr[i].qty += 1
 					arr.splice(j, 1)
 					j--
 				}
