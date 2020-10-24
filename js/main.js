@@ -55,9 +55,9 @@ class Basket {
 	render() {
 		let totalPrice = this.calcTotalPrice()
 		this.renderTotalPrice(totalPrice)
-		for (let i = 0; i < this.cart.length; i++) {
-			this.renderBasket((this.cart[i].name), (this.cart[i].price), (this.cart[i].qty), (this.cart[i].price) * this.cart[i].qty)
-		}
+		this.cart.forEach(elem => {
+			this.renderBasket((elem.name), (elem.price), (elem.qty), (elem.price) * elem.qty)
+		})
 	}
 
 	clear(selector) {
@@ -151,6 +151,4 @@ myList.addItem(new Product('Apricot kernel oil', 25, 1, 'images/product2.jpg'))
 myList.addItem(new Product('Linseed oil', 15, 1, 'images/product3.jpg'))
 myList.addItem(new Product('Cedar oil', 50, 1, 'images/product4.jpg'))
 
-for (let i = 0; i < myList.products.length; i++) {
-	myList.renderProduct(i, i)
-}
+myList.products.forEach((elem, i) => myList.renderProduct(i, i))
