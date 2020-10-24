@@ -72,6 +72,11 @@ $fontfamily: sans-serif;
 		border-radius: 2px;
 		text-align: center;
 		margin: 10px;
+		transition: all .3s;
+
+		&:hover {
+			box-shadow: 0 0 15px rgba(154, 154, 154, 0.85);
+		}
 	}
 
 	&__img {
@@ -97,9 +102,19 @@ $fontfamily: sans-serif;
 		height: 40px;
 		background: #999;
 		border-radius: 2px;
-		margin: 5px;
+		margin: 10px;
 		font-size: 22px;
 		color: #fff;
+		transition: all .3s;
+
+		&:active {
+			position: relative;
+			top: 2px;
+		}
+
+		&:hover {
+			box-shadow: 0 0 15px rgba(154, 154, 154, 0.85);
+		}
 	}
 }
 

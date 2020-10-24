@@ -53,10 +53,10 @@ class Basket {
 	}
 
 	render() {
-		let totalPrice = myCart.calcTotalPrice()
-		myCart.renderTotalPrice(totalPrice)
-		for (let i = 0; i < myCart.cart.length; i++) {
-			myCart.renderBasket((myCart.cart[i].name), (myCart.cart[i].price), (myCart.cart[i].qty), (myCart.cart[i].price) * myCart.cart[i].qty)
+		let totalPrice = this.calcTotalPrice()
+		this.renderTotalPrice(totalPrice)
+		for (let i = 0; i < this.cart.length; i++) {
+			this.renderBasket((this.cart[i].name), (this.cart[i].price), (this.cart[i].qty), (this.cart[i].price) * this.cart[i].qty)
 		}
 	}
 
@@ -99,10 +99,10 @@ class List {
 		newProduct.setAttribute('class', `product-item__wrapper product-item__wrapper${j}`)
 		newProduct.setAttribute('href', '#')
 		product.appendChild(newProduct)
-		myList.renderProductImage((myList.products[num].img), j)
-		myList.renderProductTitle((myList.products[num].name), j)
-		myList.renderProductPrice((myList.products[num].price), j)
-		myList.renderProductBtn(j)
+		this.renderProductImage((this.products[num].img), j)
+		this.renderProductTitle((this.products[num].name), j)
+		this.renderProductPrice((this.products[num].price), j)
+		this.renderProductBtn(j)
 	}
 	renderProductImage(img, j) {
 		const image = document.querySelector(`.product-item__wrapper${j}`)
