@@ -48,8 +48,33 @@ class Basket {
 		const basketTotalPrice = document.querySelector('.basket__totalprice')
 		const newBasketTotalPrice = document.createElement('div')
 		newBasketTotalPrice.setAttribute('class', 'basket__sum')
-		newBasketTotalPrice.innerText = num
+		newBasketTotalPrice.innerHTML = `${num}$`
 		basketTotalPrice.appendChild(newBasketTotalPrice)
+	}
+
+	render() {
+		let totalPrice = myCart.calcTotalPrice()
+		myCart.renderTotalPrice(totalPrice)
+		for (let i = 0; i < myCart.cart.length; i++) {
+			myCart.renderBasket((myCart.cart[i].name), (myCart.cart[i].price), (myCart.cart[i].qty), (myCart.cart[i].price) * myCart.cart[i].qty)
+		}
+	}
+
+	clear(selector) {
+		const clear = document.querySelectorAll(selector)
+		clear.forEach(item => item.remove())
+	}
+
+	sumQty(arr) {
+		for (let i = 0; i < arr.length; i++) {
+			for (let j = i + 1; j < arr.length; j++) {
+				if (arr[i].name === arr[j].name) {
+					arr[i].qty += arr[j].qty
+					arr.splice(j, 1)
+					j--
+				}
+			}
+		}
 	}
 }
 
@@ -108,30 +133,25 @@ class List {
 		newBtn.innerHTML = 'Buy'
 		btn.appendChild(newBtn)
 		btn.addEventListener('click', function () {
-			//
+			event.preventDefault()
+			myCart.clear('.basket__item')
+			myCart.clear('.basket__sum')
+			myCart.addItem(myList.products[j])
+			myCart.sumQty(myCart.cart)
+			myCart.render()
+			console.log(myCart)
 		})
 	}
 }
 
 const myList = new List()
+const myCart = new Basket()
 
 myList.addItem(new Product('Walnut oil', 30, 1, 'images/product1.jpg'))
 myList.addItem(new Product('Apricot kernel oil', 25, 1, 'images/product2.jpg'))
-myList.addItem(new Product('linseed oil', 15, 1, 'images/product3.jpg'))
+myList.addItem(new Product('Linseed oil', 15, 1, 'images/product3.jpg'))
 myList.addItem(new Product('Cedar oil', 50, 1, 'images/product4.jpg'))
 
 for (let i = 0; i < myList.products.length; i++) {
 	myList.renderProduct(i, i)
-}
-
-const myCart = new Basket()
-myCart.addItem(new Product('Apple', 1, 40))
-myCart.addItem(new Product(myList.products[0].name, myList.products[0].price, myList.products[0].qty))
-myCart.addItem(new Product(myList.products[1].name, myList.products[1].price, myList.products[1].qty))
-
-let totalPrice = myCart.calcTotalPrice()
-myCart.renderTotalPrice(totalPrice)
-
-for (let i = 0; i < myCart.cart.length; i++) {
-	myCart.renderBasket((myCart.cart[i].name), (myCart.cart[i].price), (myCart.cart[i].qty), (myCart.cart[i].price) * myCart.cart[i].qty)
 }
