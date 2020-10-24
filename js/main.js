@@ -132,14 +132,13 @@ class List {
 		newBtn.setAttribute('class', 'product-item__basket')
 		newBtn.innerHTML = 'Buy'
 		btn.appendChild(newBtn)
-		btn.addEventListener('click', function () {
+		newBtn.addEventListener('click', function () {
 			event.preventDefault()
 			myCart.clear('.basket__item')
 			myCart.clear('.basket__sum')
 			myCart.addItem(myList.products[j])
 			myCart.sumQty(myCart.cart)
 			myCart.render()
-			console.log(myCart)
 		})
 	}
 }
