@@ -27,7 +27,7 @@ class Basket {
 	}
 
 	addItem(item) {
-		this.cart.push(item)
+		this.cart.indexOf(item) >= 0 ? item.qty++ : this.cart.push(item)
 	}
 
 	calcTotalPrice() {
@@ -65,17 +65,6 @@ class Basket {
 		clear.forEach(item => item.remove())
 	}
 
-	sumQty(arr) {
-		for (let i = 0; i < arr.length; i++) {
-			for (let j = i + 1; j < arr.length; j++) {
-				if (arr[i].name === arr[j].name) {
-					arr[i].qty += 1
-					arr.splice(j, 1)
-					j--
-				}
-			}
-		}
-	}
 }
 
 
@@ -137,7 +126,6 @@ class List {
 			myCart.clear('.basket__item')
 			myCart.clear('.basket__sum')
 			myCart.addItem(myList.products[j])
-			myCart.sumQty(myCart.cart)
 			myCart.render()
 		})
 	}
