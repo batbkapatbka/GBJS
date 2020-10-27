@@ -38,6 +38,7 @@ class Basket {
 
 	renderBasket(name, price, qty, sum) {
 		const basket = document.querySelector('.basket__items')
+		basket.innerHTML = ''
 		const newBasket = document.createElement('div')
 		newBasket.setAttribute('class', 'basket__item')
 		newBasket.innerHTML = `${qty} ${name} for ${price}$ for the amount of ${sum}$`
@@ -46,6 +47,7 @@ class Basket {
 
 	renderTotalPrice(num) {
 		const basketTotalPrice = document.querySelector('.basket__totalprice')
+		basketTotalPrice.innerHTML = ''
 		const newBasketTotalPrice = document.createElement('div')
 		newBasketTotalPrice.setAttribute('class', 'basket__sum')
 		newBasketTotalPrice.innerHTML = `${num}$`
@@ -58,11 +60,6 @@ class Basket {
 		this.cart.forEach(elem => {
 			this.renderBasket((elem.name), (elem.price), (elem.qty), (elem.price) * elem.qty)
 		})
-	}
-
-	clear(selector) {
-		const clear = document.querySelectorAll(selector)
-		clear.forEach(item => item.remove())
 	}
 
 }
@@ -123,8 +120,6 @@ class List {
 		btn.appendChild(newBtn)
 		newBtn.addEventListener('click', function () {
 			event.preventDefault()
-			myCart.clear('.basket__item')
-			myCart.clear('.basket__sum')
 			myCart.addItem(myList.products[j])
 			myCart.render()
 		})
