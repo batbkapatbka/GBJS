@@ -153,6 +153,16 @@ $fontfamily: sans-serif;
 	&__item {
 		font-size: 20px;
 		padding: 10px 0;
+		display: inline-block;
+	}
+
+	&__btn {
+		background-color: #999;
+		color: #fff;
+		padding: 0 10px;
+		margin-left: 20px;
+		position: relative;
+		top: -3px;
 	}
 
 	&__line {

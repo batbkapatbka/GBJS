@@ -36,13 +36,29 @@ class Basket {
 		}, 0)
 	}
 
-	renderBasket(name, price, qty, sum) {
-		const basket = document.querySelector('.basket__items')
-		basket.innerHTML = ''
-		const newBasket = document.createElement('div')
-		newBasket.setAttribute('class', 'basket__item')
-		newBasket.innerHTML = `${qty} ${name} for ${price}$ for the amount of ${sum}$`
-		basket.appendChild(newBasket)
+	renderBasketString(name, price, qty, sum, i) {
+		const basketString = document.querySelector('.basket__items')
+		basketString.innerHTML = ''
+		const newBasketString = document.createElement('div')
+		newBasketString.setAttribute('class', 'basket__item')
+		const newBasketBtn = document.createElement('button')
+		newBasketBtn.setAttribute('class', `basket__btn basket__btn${i}`)
+		newBasketBtn.innerHTML = '-'
+		newBasketString.innerHTML = `${qty} ${name} for ${price}$ for the amount of ${sum}$`
+		basketString.appendChild(newBasketString)
+		basketString.appendChild(newBasketBtn)
+		newBasketBtn.addEventListener('click', function () {
+			event.preventDefault()
+			if (myCart.cart[i].qty > 1) {
+				myCart.cart[i].qty -= 1
+				myCart.render()
+			} else {
+				myCart.cart.splice(i, 1)
+				myCart.render()
+				basketString.innerHTML = ''
+			}
+			console.log(myCart.cart[i].qty)
+		})
 	}
 
 	renderTotalPrice(num) {
@@ -57,8 +73,8 @@ class Basket {
 	render() {
 		let totalPrice = this.calcTotalPrice()
 		this.renderTotalPrice(totalPrice)
-		this.cart.forEach(elem => {
-			this.renderBasket((elem.name), (elem.price), (elem.qty), (elem.price) * elem.qty)
+		this.cart.forEach((elem, i) => {
+			this.renderBasketString((elem.name), (elem.price), (elem.qty), (elem.price) * elem.qty, i)
 		})
 	}
 
