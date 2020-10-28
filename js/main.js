@@ -38,7 +38,6 @@ class Basket {
 
 	renderBasketString(name, price, qty, sum, i) {
 		const basketString = document.querySelector('.basket__items')
-		// basketString.innerHTML = ''
 		const newBasketString = document.createElement('div')
 		newBasketString.setAttribute('class', 'basket__item')
 		const newBasketBtn = document.createElement('button')
@@ -47,28 +46,26 @@ class Basket {
 		newBasketString.innerHTML = `${qty} ${name} for ${price}$ for the amount of ${sum}$`
 		basketString.appendChild(newBasketString)
 		basketString.appendChild(newBasketBtn)
-		newBasketBtn.addEventListener('click', function () {
+		newBasketBtn.addEventListener('click', event => {
 			event.preventDefault()
-			if (myCart.cart[i].qty > 1) {
-				myCart.cart[i].qty -= 1
-				myCart.clear('.basket__item')
-				myCart.clear('.basket__sum')
-				myCart.clear('.basket__btn')
-				myCart.render()
+			if (this.cart[i].qty > 1) {
+				this.cart[i].qty -= 1
+				this.clear('.basket__item')
+				this.clear('.basket__sum')
+				this.clear('.basket__btn')
+				this.render()
 			} else {
-				myCart.cart.splice(i, 1)
-				myCart.clear('.basket__item')
-				myCart.clear('.basket__sum')
-				myCart.clear('.basket__btn')
-				myCart.render()
+				this.cart.splice(i, 1)
+				this.clear('.basket__item')
+				this.clear('.basket__sum')
+				this.clear('.basket__btn')
+				this.render()
 			}
-			console.log(myCart.cart[i].qty)
 		})
 	}
 
 	renderTotalPrice(num) {
 		const basketTotalPrice = document.querySelector('.basket__totalprice')
-		// basketTotalPrice.innerHTML = ''
 		const newBasketTotalPrice = document.createElement('div')
 		newBasketTotalPrice.setAttribute('class', 'basket__sum')
 		newBasketTotalPrice.innerHTML = `${num}$`
